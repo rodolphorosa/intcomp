@@ -1,5 +1,7 @@
 import sys
 
+import matplotlib.pyplot as plt
+
 from numpy.random import uniform
 from numpy import sign, ones, zeros, dot, mean
 
@@ -10,13 +12,15 @@ def run():
 	low, upper = -1, 1
 	d = 2
 
-	iters = [0] * runs
-	disagrees = [0] * runs
+	iters = zeros((runs, 1))
 
 	for i in range(runs):
 		
 		p1 = uniform(low, upper, d)
 		p2 = uniform(low, upper, d)
+
+		m = (p2[1] - p1[1]) / (p2[0] - p1[0])
+		b = p1[1] - m * p1[0]
 
 		f = target(p1, p2)
 
@@ -30,9 +34,13 @@ def run():
 
 		iters[i], wt = perceptron(X, y, w)
 
-	h = sign(dot(X, wt))
+		h = sign(dot(X, wt))
 
-	plot_dboundary(X, h, wt)
+		plt.plot([-1, 1], [f(-1), f(1)], c='c', label="f(x)")
+		plot_dboundary(X, h, wt, [low, upper])		
+		plt.title("Perceptron Learning Algorithm - PLA")
+		plt.legend(loc="upper right")
+		plt.show()
 	
 	return mean(iters)
 

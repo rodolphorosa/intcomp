@@ -21,7 +21,7 @@ def perceptron(X, y, w, max_iter=10000):
 
 		n = choice(m)
 
-		wt = wt + X[n,:] * y[n]
+		wt = wt + ( X[n,:] * y[n] )
 
 		t = t + 1
 
