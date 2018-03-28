@@ -3,7 +3,7 @@ import sys
 from numpy.random import uniform
 from numpy import sign, ones, zeros, dot, mean
 
-from utils import target
+from utils import target, plot_dboundary
 from perceptron import perceptron
 
 def run():
@@ -28,9 +28,13 @@ def run():
 
 		w = zeros((d + 1))
 
-		iters[i], disagrees[i] = perceptron(X, y, w)
+		iters[i], wt = perceptron(X, y, w)
+
+	h = sign(dot(X, wt))
+
+	plot_dboundary(X, h, wt)
 	
-	return (mean(iters), mean(disagrees))
+	return mean(iters)
 
 if __name__ == '__main__':
 	
