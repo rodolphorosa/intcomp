@@ -1,7 +1,6 @@
-from math import isnan
-from numpy import array, sign, dot, where, linspace
+from numpy import array, dot, sign, where
 from numpy.random import choice
-from utils import misclassified, plot_dboundary
+from utils import misclassified
 
 """
 @brief Executes perceptron learning algorithm upon a set X = [-1, 1] X [-1, 1] of N points.
@@ -21,7 +20,7 @@ def perceptron(X, y, w, max_iter=10000):
 
 		n = choice(m)
 
-		wt = wt + ( X[n,:] * y[n] )
+		wt = wt + y[n]*X[n, :]
 
 		t = t + 1
 

@@ -1,10 +1,8 @@
 import sys
-
 import matplotlib.pyplot as plt
 
 from numpy.random import uniform
-from numpy import sign, ones, zeros, dot, mean
-
+from numpy import dot, mean, ones, sign, zeros
 from utils import target, plot_dboundary
 from perceptron import perceptron
 
@@ -17,10 +15,7 @@ def run():
 	for i in range(runs):
 		
 		p1 = uniform(low, upper, d)
-		p2 = uniform(low, upper, d)
-
-		m = (p2[1] - p1[1]) / (p2[0] - p1[0])
-		b = p1[1] - m * p1[0]
+		p2 = uniform(low, upper, d)		
 
 		f = target(p1, p2)
 
@@ -47,7 +42,7 @@ def run():
 if __name__ == '__main__':
 	
 	if len(sys.argv) < 3: 
-		print ("args: <numero de pontos> <numero de execucoes>")
+		print("args: <numero de pontos> <numero de execucoes>")
 		sys.exit(1)
 
 	N = int(sys.argv[1])
