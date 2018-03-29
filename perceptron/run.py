@@ -1,47 +1,41 @@
 import sys
 import matplotlib.pyplot as plt
 
-from numpy.random import uniform
-from numpy import dot, mean, ones, sign, zeros
-from utils import target, plot_dboundary
+from plot import plot_boundary, plot_target, plot_show
+from numpy import array, dot, mean, ones, sign, zeros
 from perceptron import perceptron
+from numpy.random import uniform
+from function import target
+from evaluate import evaluate
 
 def run():
-	low, upper = -1, 1
-	d = 2
-
 	iters = zeros((runs, 1))
+	diffs = zeros((runs, 1))
 
 	for i in range(runs):
 		
-		p1 = uniform(low, upper, d)
-		p2 = uniform(low, upper, d)		
+		p1 = uniform(-1, 1, 2)
+		p2 = uniform(-1, 1, 2)
 
 		f = target(p1, p2)
 
 		X = ones((N, 3))
 
-		X[:, 1:] = uniform(low, upper, (N, d))
+		X[:, 1:] = uniform(-1, 1, (N, 2))
 
 		y = sign(f(X[:, 1]) - X[:, 2])
 
-		w = zeros((d + 1))
+		w = zeros(3)
 
 		iters[i], wt = perceptron(X, y, w)
-
-		h = sign(dot(X, wt))
-
-		plt.plot([-1, 1], [f(-1), f(1)], c='c', label="f(x)")
-		plot_dboundary(X, h, wt, [low, upper])		
-		plt.title("Perceptron Learning Algorithm - PLA")
-		plt.legend(loc="upper right")
-		plt.show()
+		
+		diffs[i] = evaluate(f, wt, 1000)
 	
-	return mean(iters)
+	return (mean(iters), mean(diffs))
 
 if __name__ == '__main__':
 	
-	if len(sys.argv) < 3: 
+	if len(sys.argv) < 3:
 		print("args: <numero de pontos> <numero de execucoes>")
 		sys.exit(1)
 
