@@ -45,13 +45,13 @@ agrees(1) = mean(g != h);
 g = arrayfun(@(x1, x2) g2(x1, x2), X(:,2), X(:, 3));
 agrees(2) = mean(g != h);
 
-g = arrayfun(@(x1, x2) g2(x1, x2), X(:,2), X(:, 3));
+g = arrayfun(@(x1, x2) g3(x1, x2), X(:,2), X(:, 3));
 agrees(3) = mean(g != h);
 
-g = arrayfun(@(x1, x2) g2(x1, x2), X(:,2), X(:, 3));
+g = arrayfun(@(x1, x2) g4(x1, x2), X(:,2), X(:, 3));
 agrees(4) = mean(g != h);
 
-g = arrayfun(@(x1, x2) g2(x1, x2), X(:,2), X(:, 3));
+g = arrayfun(@(x1, x2) g5(x1, x2), X(:,2), X(:, 3));
 agrees(5) = mean(g != h);
 
 fprintf("Agreements for g1 ... g5 to hipothesis w: [%f %f %f %f %f]\n", agrees);
