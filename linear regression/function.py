@@ -7,6 +7,3 @@ def linear_function(p1, p2):
 	b = p1[1] - m*p1[0]
 	
 	return lambda x: m*x + b
-
-def quadratic_function(x):
-	return x[1]**2 + x[2]**2 - 0.6
