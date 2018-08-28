@@ -34,12 +34,3 @@ def generate_statistics(X, y):
     header = "K,Sigmoid1,Sigmoid2,Sigmoid3,Linear,Polynomial,RBF"
     np.savetxt("statistics.txt",
         statistics, fmt="%.4f", delimiter=",", header=header, comments='')
-
-X, y = generate_data()
-# generate_statistics(X, y)
-clf = svm.SVC(kernel="poly", degree=20)
-clf.fit(X, y)
-plot_margin(X, y, clf, "Sigmóide 1")
-# print(clf.support_vectors_.shape)
-# h = clf.predict(X)
-print(clf.score(X, y))

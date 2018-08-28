@@ -156,16 +156,3 @@ def generate_statistics(X, y):
                 f.write("%d %d %.4f %.4f\n" %(ks[i], h[j], merrs, mscores))
     end = time.time()
     print(end - start)
-
-X, y = generate_data()
-# generate_statistics(X, y)
-
-# nn = Network((2, 3, 1))
-# nn.fit(X, y)
-# plot_decision(X, y, nn)
-
-nn = Network((2, 4, 1))
-nn.fit(X, y)
-print(nn.score(X, y))
-plot_decision(X, y, nn)
-# plot_3d(X, nn)

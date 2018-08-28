@@ -46,15 +46,13 @@ def plot_margin(X, y, clf, title):
     Z = clf.decision_function(np.c_[XX.ravel(), YY.ravel()])
     Z = Z.reshape(XX.shape)
 
-    # cs = plt.contour(XX, YY, Z,
-        # colors=['k', 'k', 'k'],
-        # linestyles=['--', '-', '--'],
-        # levels=[-.5, 0, .5])
-    cs = plt.contour(XX, YY, Z, colors='k')
-
-    # plt.pcolormesh(XX, YY, Z, cmap=plt.cm.RdBu)
+    cs = plt.contour(XX, YY, Z,
+        colors=['k', 'k', 'k'],
+        linestyles=['--', '-', '--'],
+        levels=[-1, 0, 1])
+    # cs = plt.contour(XX, YY, Z, colors='k')
+    
     plt.legend(("+1", "-1", "Vetores de suporte"), loc="upper left")
-    # plt.title(title)
     plt.show()
 
 def plot_decision(X, y, clf):
@@ -79,21 +77,6 @@ def plot_decision(X, y, clf):
     Z = clf.decision_function(np.c_[XX.ravel(), YY.ravel()])
     Z = Z.reshape(XX.shape)
 
-    cs = plt.contour(XX, YY, Z, colors=['k', 'k', 'k'], linestyles=['--', '-', '--'], levels=[-1, 0, -1])
-    plt.pcolormesh(XX, YY, Z > 0, cmap=plt.cm.RdBu)
+    cs = plt.contour(XX, YY, Z)
     plt.legend(("+1", "-1"))
-    plt.show()
-
-def plot_3d(X, clf):
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
-
-    XX = X[:, 0]
-    YY = X[:, 1]
-    Z = clf.decision_function(np.c_[XX.ravel(), YY.ravel()])
-    surf = ax.plot_trisurf(XX, YY, Z, cmap=cm.coolwarm, linewidth=0, antialiased=False)
-    ax.set_zlim(-1.01, 1.01)
-    ax.zaxis.set_major_locator(LinearLocator(10))
-    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-    fig.colorbar(surf, shrink=0.5, aspect=5)
     plt.show()
